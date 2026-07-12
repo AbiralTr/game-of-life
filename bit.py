@@ -1,0 +1,70 @@
+import uuid
+
+class Bit:
+
+    def __init__(self):
+        self.code = uuid.uuid4()
+        self.energy = 1.0
+        self.active = True
+        self.health = 1
+
+    @property
+    def get_code(self):
+        return self.code
+    
+    @property
+    def get_energy(self):
+        return self.energy
+
+    @property
+    def get_health(self):
+        return self.health
+
+    @property
+    def is_active(self):
+        return self.active
+
+    def deactivate(self):
+        self.active = False
+        print(str(self.code) + " died")
+
+    def absorb(self, target):
+        if not target.is_active and target.get_energy != 0:
+            self.energy += target.get_energy / 2
+            target.set_energy(0)
+            print(str(self.get_code) + " absorbed " + str(target.get_code))
+
+    def take_damage(self, num):
+        self.health = self.health - num
+
+    def evolve(self):
+        if self.get_energy >= 2:
+            evolution = Nibit(self)
+            print("Bit " + str(self.code) + " evolve into a Nibit")
+            self.code = None
+            return evolution
+
+    def set_energy(self, num):
+        self.energy = num
+
+class Nibit(Bit):
+
+    def __init__(self, bit):
+        self.code = bit.get_code
+        self.energy = 2.0
+        self.active = True
+        self.health = 4
+        self.power = 1
+
+    def attack(self, target):
+        target.take_damage(self.power)
+
+class Byte(Nibit):
+
+    def __init__(self, Nibit):
+        self.code = Nibit.get_code
+        self.energy = 4.0
+        self.active = True
+        self.health = 8
+        self.power = 2
+
