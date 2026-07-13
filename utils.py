@@ -23,3 +23,8 @@ class BitHelper:
             population.append(b)
 
         return population
+
+    def print_entity_positions(m):
+        population = m.get_population
+        for entity in population:
+            print(entity.get_name + ": " + str(entity.get_position))

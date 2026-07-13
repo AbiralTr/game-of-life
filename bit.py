@@ -1,4 +1,5 @@
 import uuid
+import random
 
 class Bit:
 
@@ -8,6 +9,7 @@ class Bit:
         self.energy = 1.0
         self.active = True
         self.health = 1
+        self.position = (None, None)
 
     @property
     def get_code(self):
@@ -28,9 +30,17 @@ class Bit:
     @property
     def get_name(self):
         return self.name
+    
+    @property
+    def get_position(self):
+        return self.position
+
+    def set_position(self, x, y):
+        self.position = (x, y)
 
     def set_name(self, n):
         self.name = n
+
     def deactivate(self):
         self.active = False
         print(str(self.code) + " died")
@@ -53,6 +63,11 @@ class Bit:
 
     def set_energy(self, num):
         self.energy = num
+    
+    def step(self):
+        directions = [(0,0), (1,0), (0,1), (-1,0), (0,-1)]
+        choice = random.choice(directions)
+        return choice
 
 class Nibit(Bit):
 

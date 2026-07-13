@@ -24,10 +24,9 @@ class Map:
                 h = random.randint(0, self.height-1)
                 if (w, h) not in filled:
                     self.matrix[w][h] = entity
+                    entity.set_position(w, h) 
                     filled.add((w,h))
                     success = True
-                else:
-                    print("Spot [" + str(w) + "," + str(h) + "] is filled, retrying")
 
     def add_to_population(self, entity):
         self.population.append(entity)
@@ -51,13 +50,12 @@ class Map:
     def get_matrix(self):
         return self.matrix
 
-    def change_state(self):
+    def randomize_state(self):
         self.matrix = [[0 for _ in range(self.width)] for _ in range(self.height)]
         self.fill_matrix()
 
-
-
-
+    def advance_state(self):
+        pass
 
 
 
