@@ -50,3 +50,18 @@ class Map:
     @property
     def get_matrix(self):
         return self.matrix
+
+    def change_state(self):
+        self.matrix = [[0 for _ in range(self.width)] for _ in range(self.height)]
+        self.fill_matrix()
+
+
+
+
+
+
+
+
+
+
+
