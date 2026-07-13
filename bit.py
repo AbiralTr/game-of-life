@@ -3,7 +3,8 @@ import uuid
 class Bit:
 
     def __init__(self):
-        self.code = uuid.uuid4()
+        self.name = ''
+        self.code = uuid.uuid4().hex[:5]
         self.energy = 1.0
         self.active = True
         self.health = 1
@@ -24,6 +25,12 @@ class Bit:
     def is_active(self):
         return self.active
 
+    @property
+    def get_name(self):
+        return self.name
+
+    def set_name(self, n):
+        self.name = n
     def deactivate(self):
         self.active = False
         print(str(self.code) + " died")
