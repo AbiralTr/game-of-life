@@ -65,14 +65,12 @@ class Map:
                 choice = list(entity.choose_step())
                 new_position = BitHelper.add_vectors(entity.get_position, choice)
                 if new_position[0] > self.height-1 or new_position[1] > self.width-1 or new_position[0] < 0 or new_position[1] < 0:
-                    print("Chosen position out of bounds - retrying")
+                    continue
                 elif (new_position[0], new_position[1]) not in filled:
                     success = True
                     filled.add((new_position[0], new_position[1]))
                     entity.set_position(new_position[0], new_position[1])
                     self.matrix[new_position[0]][new_position[1]] = entity
-                else:
-                    print("Chosen position is filled - retrying")
 
 
                 

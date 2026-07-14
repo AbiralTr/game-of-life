@@ -13,10 +13,10 @@ class BitHelper:
         for i in mat:
             for j in i:
                 if j != 0:
-                    print(j.get_name + " ", end="")
+                    print("\033[1m"+ j.get_name + "\t\033[0m", end="")
                 else:
-                    print("0 ", end="")
-            print("")
+                    print("0\t", end="")
+            print("\n")
         print("------------------")
    
     def print_population(population):
