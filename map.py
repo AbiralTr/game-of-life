@@ -68,13 +68,9 @@ class Map:
                     print("Chosen position out of bounds - retrying")
                 elif (new_position[0], new_position[1]) not in filled:
                     success = True
-                    entity_survival_check = entity.check_survival()
-                    if not entity_survival_check:    
-                        print("Entity " + entity.get_name + " died")
-                    else:
-                        filled.add((new_position[0], new_position[1]))
-                        entity.set_position(new_position[0], new_position[1])
-                        self.matrix[new_position[0]][new_position[1]] = entity
+                    filled.add((new_position[0], new_position[1]))
+                    entity.set_position(new_position[0], new_position[1])
+                    self.matrix[new_position[0]][new_position[1]] = entity
                 else:
                     print("Chosen position is filled - retrying")
 

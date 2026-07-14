@@ -44,7 +44,6 @@ class Bit:
 
     def deactivate(self):
         self.active = False
-        print(str(self.code) + " died")
 
     def absorb(self, target):
         if not target.is_active and target.get_energy != 0:
@@ -69,14 +68,6 @@ class Bit:
         directions = [(0,0), (1,0), (0,1), (-1,0), (0,-1)]
         choice = random.choice(directions)
         return choice
-
-    def check_survival(self):
-        result = random.randint(0, self.power)
-        threshold = result / 2
-        if result > threshold:
-            return True
-        return False
-
 
 class Nibit(Bit):
 

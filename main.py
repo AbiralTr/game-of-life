@@ -3,7 +3,7 @@ import random
 from utils import BitHelper
 from map import Map
 
-m = Map(5, 5)
+m = Map(3, 3)
 pop = BitHelper.generate_population(5)
 
 m.import_population(pop)
