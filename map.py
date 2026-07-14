@@ -1,4 +1,5 @@
 import random
+from utils import BitHelper
 
 class Map:
 
@@ -6,6 +7,7 @@ class Map:
         self.height = height
         self.width = width
         self.capacity = height * width
+        self.dimensions = [height, width]
         self.population = []
         self.matrix = [[0 for _ in range(width)] for _ in range(height)] 
 
@@ -40,11 +42,11 @@ class Map:
 
     @property
     def get_dimensions(self):
-        return (self.height, self.width)
+        return self.dimensions
 
     @property
     def get_capacity(self):
-        return self.capacit
+        return self.capacity
 
     @property
     def get_matrix(self):
@@ -55,7 +57,31 @@ class Map:
         self.fill_matrix()
 
     def advance_state(self):
-        pass
+        self.matrix = [[0 for _ in range(self.width)] for _ in range(self.height)]
+        filled = set()
+        for entity in self.population:
+            success = False
+            while not success:
+                choice = list(entity.choose_step())
+                new_position = BitHelper.add_vectors(entity.get_position, choice)
+                if new_position[0] > self.height-1 or new_position[1] > self.width-1 or new_position[0] < 0 or new_position[1] < 0:
+                    print("Chosen position out of bounds - retrying")
+                elif (new_position[0], new_position[1]) not in filled:
+                    success = True
+                    entity_survival_check = entity.check_survival()
+                    if not entity_survival_check:    
+                        print("Entity " + entity.get_name + " died")
+                    else:
+                        filled.add((new_position[0], new_position[1]))
+                        entity.set_position(new_position[0], new_position[1])
+                        self.matrix[new_position[0]][new_position[1]] = entity
+                else:
+                    print("Chosen position is filled - retrying")
+
+
+                
+                
+
 
 
 

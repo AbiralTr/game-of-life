@@ -8,7 +8,8 @@ class Bit:
         self.code = uuid.uuid4().hex[:5]
         self.energy = 1.0
         self.active = True
-        self.health = 1
+        self.health = 2
+        self.power = 2
         self.position = (None, None)
 
     @property
@@ -64,10 +65,18 @@ class Bit:
     def set_energy(self, num):
         self.energy = num
     
-    def step(self):
+    def choose_step(self):
         directions = [(0,0), (1,0), (0,1), (-1,0), (0,-1)]
         choice = random.choice(directions)
         return choice
+
+    def check_survival(self):
+        result = random.randint(0, self.power)
+        threshold = result / 2
+        if result > threshold:
+            return True
+        return False
+
 
 class Nibit(Bit):
 
@@ -76,7 +85,7 @@ class Nibit(Bit):
         self.energy = 2.0
         self.active = True
         self.health = 4
-        self.power = 1
+        self.power = 4
 
     def attack(self, target):
         target.take_damage(self.power)
@@ -88,5 +97,5 @@ class Byte(Nibit):
         self.energy = 4.0
         self.active = True
         self.health = 8
-        self.power = 2
+        self.power = 8
 

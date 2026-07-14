@@ -9,3 +9,8 @@ pop = BitHelper.generate_population(5)
 m.import_population(pop)
 m.fill_matrix()
 
+BitHelper.print_matrix(m.get_matrix)
+
+m.advance_state()
+
+BitHelper.print_matrix(m.get_matrix)

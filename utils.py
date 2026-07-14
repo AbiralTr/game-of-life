@@ -2,6 +2,13 @@ from bit import Bit
 
 class BitHelper:
 
+    def add_vectors(v1, v2):
+        result = []
+        for i in range(len(v1)):
+            result.append(v1[i] + v2[i])
+
+        return result
+
     def print_matrix(mat):
         for i in mat:
             for j in i:
@@ -10,6 +17,7 @@ class BitHelper:
                 else:
                     print("0 ", end="")
             print("")
+        print("------------------")
    
     def print_population(population):
         for entity in population:
